@@ -1,0 +1,3 @@
+docker stack rm config
+sleep 20
+docker stack deploy -c config.stack.yml config

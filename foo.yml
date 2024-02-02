@@ -1,0 +1,7 @@
+items:
+  hostname: {{  env "HOSTNAME" }}
+  and: '{{ .Node.Hostname }}'
+  one: '{{ .Node.ID | printf "ZZ %s ZZ" }}'
+  two: {{ env "USER" }}
+  three: '{{ env "UID" | printf "%06s" }}'
+  secret: '{{ secret "secret_foo" }}'

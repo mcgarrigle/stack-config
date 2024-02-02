@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  container:
+    image: "macthegif/diagnostic:1.3"
+    command: "sleep infinity"
+    environment:
+      HOSTNAME: "{{ .Node.Hostname }}"
+      USER: unknown
+      UID: 1234
+    configs:
+      - source: foo
+        target: foo.yml
+    secrets:
+      - 'secret_foo'
+    deploy:
+      placement:
+        constraints:
+          - "node.hostname == node1"
+
+configs:
+  foo:
+    file: foo.yml
+    template_driver: golang
+
+secrets:
+  secret_foo:
+    external: true
